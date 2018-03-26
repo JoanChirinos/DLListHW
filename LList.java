@@ -142,69 +142,7 @@ public class LList implements List //your List interface must be in same dir
     tmp.setPrev(newNode);
 
     _size++;
-
-
-      /*
-    DLLNode newNode = new DLLNode( newVal, null, null );
-
-    //if index==0, insert node before head node
-    if ( index == 0 )
-    add( newVal );
-    else {
-      DLLNode temp;
-
-      if (index < this.size()/2) {
-        temp = _head;
-        for ( int i = 0; i < index - 1; i++) {
-          temp = temp.getNext();
-        }
-      }
-      else {
-        temp = _tail;
-        for (int i = index - 1; i > 1; i-- ) {
-          temp = temp.getPrev();
-        }
-      }
-
-      temp.getPrev().setNext(newNode);
-      newNode.setPrev(temp.getPrev());
-      temp.setPrev(newNode);
-      newNode.setNext(temp);
-
-    }
-      /* 	    DLLNode tmp;
-
-      if (index < _size/2) {
-      tmp = _head; //create alias to head
-
-      //walk to desired node
-      for( int i=0; i < index-1; i++ )
-      tmp = tmp.getNext();
-    }
-
-    else {
-    tmp = _tail; //create alias to head
-
-    //walk to desired node
-    for( int i=index-1; i > 1; i-- )
-    tmp = tmp.getPrev();
-  } */
-  /*
-  DLLNode tmp = _head; //create alias to head
-
-  //walk to node before desired node
-  for( int i=0; i < index-1; i++ )
-  tmp = tmp.getNext();
-
-  //insert new node
-  newNode.setNext( tmp.getNext() );
-  tmp.setNext( newNode );
-
-  //increment size attribute
-  _size++;
-}
-*/
-}
+  }
 
 
 //remove node at pos index, return its cargo
@@ -213,33 +151,40 @@ public String remove( int index ) {
   if ( index < 0 || index >= size() )
   throw new IndexOutOfBoundsException();
 
-  String retVal;
-  DLLNode tmp = _head; //create alias to head
-
-  //if index==0, remove head node
-  if ( index == 0 ) {
-    //check target node's cargo hold
-    retVal = _head.getCargo();
-
-    //remove target node
+  String retStr;
+  if (index == 0) {
+    retStr = _head.getCargo();
     _head = _head.getNext();
+    _head.setPrev(null); //kill the pointer
   }
-  else {
-    //walk to node before desired node
-    for( int i=0; i < index-1; i++ )
-    tmp = tmp.getNext();
-
-    //check target node's cargo hold
-    retVal = tmp.getNext().getCargo();
-
-    //remove target node
-    tmp.setNext( tmp.getNext().getNext() );
+  else if (index == size() - 1) {
+    retStr = _tail.getCargo();
+    _tail = _tail.getPrev();
+    _tail.setNext(null); //kill the pointer
   }
-
-  //decrement size attribute
+  else { //this means we gotta walk our temp
+    DLLNode tmp;
+    if (index < size()/2) { //index in first half of LList
+      tmp = _head;
+      for (int i = 0; i < index; i++) {
+        tmp = tmp.getNext();
+      }
+      retStr = tmp.getNext().getCargo(); //save deleted cargo
+      tmp.setNext(tmp.getNext().getNext()); //kill 1 pointer
+      tmp.getNext().setPrev(tmp); //deal with the next's prev (kill other pointer)
+    }
+    else { //index is in second half of LList
+      tmp = _tail;
+      for (int i = size(); i > index; i--) {
+        tmp = tmp.getPrev();
+      }
+      retStr = tmp.getPrev().getCargo(); //save deleted cargo
+      tmp.setPrev(tmp.getPrev().getPrev()); //kill 1 pointer
+      tmp.getPrev().setNext(tmp); //deal with prev's next (kill other pointer)
+    }
+  }
   _size--;
-
-  return retVal;
+  return retStr;
 }
 
 //--------------^  List interface methods  ^--------------
