@@ -10,7 +10,7 @@ public class ListTester
   public static void main( String[] args )
   {
     //instantiate... var type List, obj type LList
-    List wu = new LList();
+    List<String> wu = new LList<String>();
 
     System.out.println();
     System.out.println(wu);

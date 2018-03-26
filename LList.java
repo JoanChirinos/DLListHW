@@ -156,7 +156,7 @@ public class LList<T> implements List<T> //your List interface must be in same d
   //remove node at pos index, return its cargo
   public T remove( int index ) {
 
-    if ( index <= 0 || index >= size() )
+    if ( index < 0 || index >= size() )
       throw new IndexOutOfBoundsException();
 
     T retStr;
