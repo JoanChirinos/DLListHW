@@ -11,7 +11,7 @@ public class LLNode<T>
   private LLNode<T> _nextNode; //pointer to next LLNode
 
   // constructor -- initializes instance vars
-  public LLNode( T value, LLNode next ) {
+  public LLNode( T value, LLNode<T> next ) {
     _cargo = value;
     _nextNode = next;
   }
@@ -20,7 +20,7 @@ public class LLNode<T>
   //--------------v  ACCESSORS  v--------------
   public T getCargo() { return _cargo; }
 
-  public LLNode getNext() { return _nextNode; }
+  public LLNode<T> getNext() { return _nextNode; }
   //--------------^  ACCESSORS  ^--------------
 
 
@@ -31,7 +31,7 @@ public class LLNode<T>
     return foo;
   }
 
-  public T setNext( LLNode newNext ) {
+  public T setNext( LLNode<T> newNext ) {
     LLNode foo = getNext();
     _nextNode = newNext;
     return foo;
