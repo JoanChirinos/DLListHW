@@ -1,3 +1,11 @@
+/*
+  Team SushiWithCheeriosAndASideOfAaron
+  Joan Chirinos, Aaron Li, and Shruthi Venkata
+  APCS2 pd08
+  HW24 -- On the DLL
+  2018-03-26
+*/
+
 /*****************************************************
 * class LList
 * Implements a linked list of DLLNodes, each containing String data
