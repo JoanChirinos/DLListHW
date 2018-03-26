@@ -1,78 +1,77 @@
 /*****************************************************
- * class LLNode
- * Implements a node, for use in lists and other container classes.
- * Stores its data as a String
- *****************************************************/
+* class LLNode
+* Implements a node, for use in lists and other container classes.
+* Stores its data as a String
+*****************************************************/
 
-public class LLNode
+public class LLNode<T>
 {
-    //instance vars
-    private String _cargo;    //cargo may only be of type String
-    private LLNode _nextNode; //pointer to next LLNode
+  //instance vars
+  private T _cargo;    //cargo may only be of type String
+  private LLNode<T> _nextNode; //pointer to next LLNode
 
-    // constructor -- initializes instance vars
-    public LLNode( String value, LLNode next ) {
-	_cargo = value;
-	_nextNode = next;
-    }
-
-
-    //--------------v  ACCESSORS  v--------------
-    public String getCargo() { return _cargo; }
-
-    public LLNode getNext() { return _nextNode; }
-    //--------------^  ACCESSORS  ^--------------
+  // constructor -- initializes instance vars
+  public LLNode( T value, LLNode next ) {
+    _cargo = value;
+    _nextNode = next;
+  }
 
 
-    //--------------v  MUTATORS  v--------------
-    public String setCargo( String newCargo ) {
-	String foo = getCargo();
-	_cargo = newCargo;
-	return foo;
-    }
+  //--------------v  ACCESSORS  v--------------
+  public T getCargo() { return _cargo; }
 
-    public LLNode setNext( LLNode newNext ) {
-	LLNode foo = getNext();
-	_nextNode = newNext;
-	return foo;
-    }
-    //--------------^  MUTATORS  ^--------------
-
-    
-    // override inherited toString
-    public String toString() { return _cargo.toString(); }
+  public LLNode getNext() { return _nextNode; }
+  //--------------^  ACCESSORS  ^--------------
 
 
-    //main method for testing
-    public static void main( String[] args )
-    {
+  //--------------v  MUTATORS  v--------------
+  public T setCargo( T newCargo ) {
+    String foo = getCargo();
+    _cargo = newCargo;
+    return foo;
+  }
 
-	//Below is an exercise in creating a linked list...
+  public T setNext( LLNode newNext ) {
+    LLNode foo = getNext();
+    _nextNode = newNext;
+    return foo;
+  }
+  //--------------^  MUTATORS  ^--------------
 
-	//Create a node
-	LLNode first = new LLNode( "cat", null );
 
-	//Create a new node after the first
-	first.setNext( new LLNode( "dog", null ) );
+  // override inherited toString
+  public String toString() { return _cargo.toString(); }
 
-	//Create a third node after the second
-	first.getNext().setNext( new LLNode( "cow", null ) );
 
-	/* A naive list traversal, has side effects.... ??
-	   while( first != null ) {
-	   System.out.println( first );
-	   first = first.getNext();
-	   }
-	*/
+  //main method for testing
+  public static void main( String[] args )
+  {
 
-	//Q: when head ptr moves to next node in list, what happens to the node it just left?
+    //Below is an exercise in creating a linked list...
 
-	//...so better: ?
-	//
-	//
-	//
-	
-    }//end main
+    //Create a node
+    LLNode first = new LLNode<String>( "cat", null );
+
+    //Create a new node after the first
+    first.setNext( new LLNode( "dog", null ) );
+
+    //Create a third node after the second
+    first.getNext().setNext( new LLNode( "cow", null ) );
+
+    /* A naive list traversal, has side effects.... ??
+    while( first != null ) {
+    System.out.println( first );
+    first = first.getNext();
+  }
+  */
+
+  //Q: when head ptr moves to next node in list, what happens to the node it just left?
+
+  //...so better: ?
+  //
+  //
+  //
+
+}//end main
 
 }//end class LLNode
-

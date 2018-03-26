@@ -13,12 +13,12 @@
  * Stores data of type String
  *****************************************************/
 
-public class DLLNode
+public class DLLNode<T>
 {
-  private String _cargo;    //cargo may only be of type String
-  private DLLNode _nextNode, _prevNode; //pointers to next, prev DLLNodes
+  private T _cargo;    //cargo may only be of type String
+  private DLLNode<T> _nextNode, _prevNode; //pointers to next, prev DLLNodes
 
-  public DLLNode(String carg, DLLNode prev, DLLNode next) {
+  public DLLNode(T carg, DLLNode<T> prev, DLLNode<T> next) {
        this._cargo = carg;
        this._nextNode = next;
        this._prevNode = prev;
@@ -26,42 +26,42 @@ public class DLLNode
 
  //--------------v  ACCESSORS  v--------------
 
- public String getCargo() {
+ public T getCargo() {
       return _cargo;
 }
 
-public DLLNode getNext() {
+public DLLNode<T> getNext() {
      return _nextNode;
 }
 
-public DLLNode getPrev() {
+public DLLNode<T> getPrev() {
      return _prevNode;
 }
 
  //--------------^  ACCESSORS  ^--------------
 
  //--------------v  MUTATORS  v--------------
- public String setCargo(String inp) {
-      String orig = _cargo;
+ public T setCargo(T inp) {
+      T orig = _cargo;
       _cargo = inp;
       return orig;
 }
 
-public DLLNode setNext(DLLNode inp) {
-     DLLNode orig = _nextNode;
+public DLLNode<T> setNext(DLLNode<T> inp) {
+     DLLNode<T> orig = _nextNode;
      this._nextNode = inp;
      return orig;
 }
 
-public DLLNode setPrev(DLLNode inp) {
-     DLLNode orig = _prevNode;
+public DLLNode<T> setPrev(DLLNode<T> inp) {
+     DLLNode<T> orig = _prevNode;
      _prevNode = inp;
      return orig;
 }
  //--------------^  MUTATORS  ^--------------
 
 public String toString() {
-     return _cargo + " <-> " + _nextNode;
+     return _cargo.toString() + " <-> " + _nextNode;
 }
 
 public static void main(String[] args) {
