@@ -1,6 +1,6 @@
 /*****************************************************
  * class LList
- * Implements a linked list of LLNodes, each containing String data
+ * Implements a linked list of DLLNodes, each containing String data
  * new in v2: add-at-index, remove
  *****************************************************/
 
@@ -8,8 +8,8 @@ public class LList implements List //your List interface must be in same dir
 {
 
   //instance vars
-  private LLNode _head;
-  private LLNode _tail;
+  private DLLNode _head;
+  private DLLNode _tail;
   private int _size;
 
   // constructor -- initializes instance vars
@@ -25,7 +25,7 @@ public class LList implements List //your List interface must be in same dir
 
   public boolean add( String newVal )
   {
-    LLNode tmp = new LLNode( newVal, _head );
+    DLLNode tmp = new DLLNode( newVal, null, _head );
     _head = tmp;
     _size++;
     return true;
@@ -38,7 +38,7 @@ public class LList implements List //your List interface must be in same dir
 	    throw new IndexOutOfBoundsException();
 
     String retVal;
-    LLNode tmp = _head; //create alias to head
+    DLLNode tmp = _head; //create alias to head
 
     //walk to desired node
     for( int i=0; i < index; i++ )
@@ -55,13 +55,25 @@ public class LList implements List //your List interface must be in same dir
 
     if ( index < 0 || index >= size() )
 	    throw new IndexOutOfBoundsException();
+		
+	DLLNode tmp;
+	
+	if (index < _size/2) {
+	    tmp = _head; //create alias to head
 
-    LLNode tmp = _head; //create alias to head
-
-    //walk to desired node
-    for( int i=0; i < index; i++ )
+		//walk to desired node
+		for( int i=0; i < index; i++ )
 	    tmp = tmp.getNext();
+	}
+	
+	else {
+		tmp = _tail; //create alias to head
 
+		//walk to desired node
+		for( int i=index; i > 0; i-- )
+	    tmp = tmp.getPrev();
+	}
+	
     //store target node's cargo
     String oldVal = tmp.getCargo();
 
@@ -82,13 +94,32 @@ public class LList implements List //your List interface must be in same dir
     if ( index < 0 || index >= size() )
 	    throw new IndexOutOfBoundsException();
 
-    LLNode newNode = new LLNode( newVal, null );
+    DLLNode newNode = new DLLNode( newVal, null, null );
 
     //if index==0, insert node before head node
     if ( index == 0 )
 	    add( newVal );
+	
+
     else {
-	    LLNode tmp = _head; //create alias to head
+/* 	    DLLNode tmp;
+	
+		if (index < _size/2) {
+			tmp = _head; //create alias to head
+
+			//walk to desired node
+			for( int i=0; i < index-1; i++ )
+			tmp = tmp.getNext();
+		}
+	
+		else {
+			tmp = _tail; //create alias to head
+
+			//walk to desired node
+			for( int i=index-1; i > 1; i-- )
+			tmp = tmp.getPrev();
+		} */
+		DLLNode tmp = _head; //create alias to head
 
 	    //walk to node before desired node
 	    for( int i=0; i < index-1; i++ )
@@ -111,7 +142,7 @@ public class LList implements List //your List interface must be in same dir
 	    throw new IndexOutOfBoundsException();
 
     String retVal;
-    LLNode tmp = _head; //create alias to head
+    DLLNode tmp = _head; //create alias to head
 
     //if index==0, remove head node
     if ( index == 0 ) {
@@ -146,7 +177,7 @@ public class LList implements List //your List interface must be in same dir
   public String toString()
   {
     String retStr = "HEAD->";
-    LLNode tmp = _head; //init tr
+    DLLNode tmp = _head; //init tr
     while( tmp != null ) {
 	    retStr += tmp.getCargo() + "->";
 	    tmp = tmp.getNext();

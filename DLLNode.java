@@ -10,49 +10,64 @@ public class DLLNode
   private String _cargo;    //cargo may only be of type String
   private DLLNode _nextNode, _prevNode; //pointers to next, prev DLLNodes
 
-  //YOUR IMPLEMENTATION HERE...
-  public LLNode(String val, LLNode next, LLNode prev) {
-    _cargo = val;
-    _nextNode = next;
-    _prevNode = prev;
-  }
+  public DLLNode(String carg, DLLNode prev, DLLNode next) {
+       this._cargo = carg;
+       this._nextNode = next;
+       this._prevNode = prev;
+ }
 
-  public String getCargo() {
-    return _cargo;
-  }
+ //--------------v  ACCESSORS  v--------------
 
-  public LLNode getNext() {
-    return _nextNode;
-  }
+ public String getCargo() {
+      return _cargo;
+}
 
-  public LLNode getPrev() {
-    return _prevNode;
-  }
+public DLLNode getNext() {
+     return _nextNode;
+}
 
-  public String setCargo(String newCargo) {
-    String old = this.getCargo();
-    _cargo = newCargo;
-    return old;
-  }
+public DLLNode getPrev() {
+     return _prevNode;
+}
 
-  public LLNode setNext(LLNode newNext) {
-    LLNode old = this.getNext();
-    _nextNode = newNext;
-    return old;
-  }
+ //--------------^  ACCESSORS  ^--------------
 
-  public LLNode setPrev(LLNode newPrev) {
-    LLNode old = this.getPrev();
-    _prevNode = newPrev;
-    return old;
-  }
+ //--------------v  MUTATORS  v--------------
+ public String setCargo(String inp) {
+      String orig = _cargo;
+      _cargo = inp;
+      return orig;
+}
 
-  public String toString() {
-    return _cargo.toString();
-  }
+public DLLNode setNext(DLLNode inp) {
+     DLLNode orig = _nextNode;
+     this._nextNode = inp;
+     return orig;
+}
 
-  public static void main(String[] args) {
-    
-  }
+public DLLNode setPrev(DLLNode inp) {
+     DLLNode orig = _prevNode;
+     _prevNode = inp;
+     return orig;
+}
+ //--------------^  MUTATORS  ^--------------
 
+public String toString() {
+     return _cargo + " <-> " + _nextNode;
+}
+
+public static void main(String[] args) {
+     //PROTIP: try creating a few nodes: traversible, connected...
+     //note anything notable as you develop and test...
+     DLLNode test1 = new DLLNode("Testing", null, null);
+     System.out.println(test1);
+     DLLNode test2 = new DLLNode("testing another link", test1, null);
+     test1.setNext(test2);
+     test2.setPrev(test1);
+     System.out.println(test1);
+     DLLNode test3 = new DLLNode("continuing the link", test2, null);
+     test2.setNext(test3);
+     test3.setPrev(test2);
+     System.out.println(test1);
+}
 }//end class DLLNode
