@@ -12,7 +12,7 @@ HW24 -- On the DLL
 * new in v2: add-at-index, remove
 *****************************************************/
 
-public class LList<T> implements List<T>, Iterable //your List interface must be in same dir
+public class LList<T> implements List<T> //your List interface must be in same dir
 {
 
   //instance vars
@@ -63,7 +63,7 @@ public class LList<T> implements List<T>, Iterable //your List interface must be
 
     //walk to desired node
     for( int i=0; i < index; i++ )
-      tmp = tmp.getNext();
+    tmp = tmp.getNext();
 
     //check target node's cargo hold
     retVal = tmp.getCargo();
@@ -74,7 +74,7 @@ public class LList<T> implements List<T>, Iterable //your List interface must be
   public T set( int index, T newVal )
   {
     if ( index < 0 || index >= size() )
-      throw new IndexOutOfBoundsException();
+    throw new IndexOutOfBoundsException();
 
     T retStr;
 
@@ -156,7 +156,7 @@ public class LList<T> implements List<T>, Iterable //your List interface must be
   public T remove( int index ) {
 
     if ( index < 0 || index >= size() )
-      throw new IndexOutOfBoundsException();
+    throw new IndexOutOfBoundsException();
 
     T retStr;
 
