@@ -28,6 +28,33 @@ public class LList<T> implements List<T> //your List interface must be in same d
     _size = 0;
   }
 
+  //--------------v  Iterator thing  v--------------
+
+  private class MyIterator implements Iterator<T> {
+
+    private DLLNode<T> _curr;
+
+    public MyIterator() {
+      _curr = _head;
+    }
+
+    public boolean hasNext() {
+      return ()!(_curr.getNext() == null));
+    }
+
+    public T next() {
+      _curr = _curr.getNext();
+      return _curr;
+    }
+
+    public void remove() {
+      
+    }
+
+  }
+
+  //--------------^  Iterator thing  ^--------------
+
   //--------------v  List interface methods  v--------------
 
   public boolean add( T newVal )
