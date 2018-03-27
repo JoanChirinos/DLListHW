@@ -12,6 +12,8 @@ HW24 -- On the DLL
 * new in v2: add-at-index, remove
 *****************************************************/
 
+import java.util.*;
+
 public class LList<T> implements List<T> //your List interface must be in same dir
 {
 
@@ -30,25 +32,42 @@ public class LList<T> implements List<T> //your List interface must be in same d
 
   //--------------v  Iterator thing  v--------------
 
-  private class MyIterator implements Iterator<T> {
+  public Iterator<T> iterator() {
+    //Iterator<T> it = new MyIterator<T>();
+    //return it;
 
-    private DLLNode<T> _curr;
+    return (Iterator<T>) (new MyIterator<T>());
+  }
+
+  class MyIterator<T> implements Iterator {
+
+    DLLNode<T> _current;
 
     public MyIterator() {
-      _curr = _head;
+      _current = new DLLNode(null, null, _head);
     }
 
+    @Override
     public boolean hasNext() {
-      return ()!(_curr.getNext() == null));
+      return (_current.getNext() != null);
     }
 
+    @Override
     public T next() {
-      _curr = _curr.getNext();
-      return _curr;
+      if (!(hasNext())) {
+        throw new NoSuchElementException();
+      }
+      _current = _current.getNext();
+      return _current.getCargo();
     }
 
+    @Override
     public void remove() {
-      
+      if (_current.getCargo() == null) {
+        throw new IllegalStateException();
+      }
+      _current.getPrev().setNext(_current.getNext());
+      _current = new DLLNode(null, null, _current.getNext());
     }
 
   }
