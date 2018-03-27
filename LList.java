@@ -12,7 +12,7 @@ HW24 -- On the DLL
 * new in v2: add-at-index, remove
 *****************************************************/
 
-public class LList<T> implements List<T> //your List interface must be in same dir
+public class LList<T> implements List<T>, Iterable //your List interface must be in same dir
 {
 
   //instance vars
@@ -27,7 +27,6 @@ public class LList<T> implements List<T> //your List interface must be in same d
     _tail = null; //at birth, a list has no elements
     _size = 0;
   }
-
 
   //--------------v  List interface methods  v--------------
 

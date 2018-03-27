@@ -1,81 +1,78 @@
-/*
-  Team SushiWithCheeriosAndASideOfAaron
-  Joan Chirinos, Aaron Li, and Shruthi Venkata
-  APCS2 pd08
-  HW24 -- On the DLL
-  2018-03-26
-*/
-
 /*****************************************************
  * class DLLNode
- * Implements a doubly-linked node,
- * for use in lists and other collection classes.
- * Stores data of type String
+ * Implements a node, for use in lists and other container classes.
  *****************************************************/
 
-public class DLLNode<T>
+public class DLLNode<T> {
+
+    private T _cargo;    //cargo may only be of type T
+    private DLLNode<T> _nextNode, _prevNode; //pointers to next, prev DLLNodes
+
+
+    // constructor -- initializes instance vars
+    public DLLNode( T value, DLLNode<T> prev, DLLNode<T> next ) 
 {
-  private T _cargo;    //cargo may only be of type String
-  private DLLNode<T> _nextNode, _prevNode; //pointers to next, prev DLLNodes
+	_cargo = value;
+	_nextNode = next;
+	_prevNode = prev;
+    }
 
-  public DLLNode(T carg, DLLNode<T> prev, DLLNode<T> next) {
-       this._cargo = carg;
-       this._nextNode = next;
-       this._prevNode = prev;
- }
 
- //--------------v  ACCESSORS  v--------------
+    //--------------v  ACCESSORS  v--------------
+    public T getCargo() { return _cargo; }
 
- public T getCargo() {
-      return _cargo;
-}
+    public DLLNode<T> getNext() { return _nextNode; }
 
-public DLLNode<T> getNext() {
-     return _nextNode;
-}
+    public DLLNode<T> getPrev() { return _prevNode; }
+    //--------------^  ACCESSORS  ^--------------
 
-public DLLNode<T> getPrev() {
-     return _prevNode;
-}
 
- //--------------^  ACCESSORS  ^--------------
+    //--------------v  MUTATORS  v--------------
+    public T setCargo( T newCargo ) {
+	T foo = getCargo();
+	_cargo = newCargo;
+	return foo;
+    }
 
- //--------------v  MUTATORS  v--------------
- public T setCargo(T inp) {
-      T orig = _cargo;
-      _cargo = inp;
-      return orig;
-}
+    public DLLNode<T> setNext( DLLNode<T> newNext ) {
+	DLLNode<T> foo = getNext();
+	_nextNode = newNext;
+	return foo;
+    }
 
-public DLLNode<T> setNext(DLLNode<T> inp) {
-     DLLNode<T> orig = _nextNode;
-     this._nextNode = inp;
-     return orig;
-}
+    public DLLNode<T> setPrev( DLLNode<T> newPrev ) {
+	DLLNode<T> foo = getPrev();
+	_prevNode = newPrev;
+	return foo;
+    }
+    //--------------^  MUTATORS  ^--------------
 
-public DLLNode<T> setPrev(DLLNode<T> inp) {
-     DLLNode<T> orig = _prevNode;
-     _prevNode = inp;
-     return orig;
-}
- //--------------^  MUTATORS  ^--------------
 
-public String toString() {
-     return _cargo.toString() + " <-> " + _nextNode;
-}
+    // override inherited toString
+    public String toString() { return _cargo.toString(); }
 
-public static void main(String[] args) {
-     //PROTIP: try creating a few nodes: traversible, connected...
-     //note anything notable as you develop and test...
-     DLLNode test1 = new DLLNode("Testing", null, null);
-     System.out.println(test1);
-     DLLNode test2 = new DLLNode("testing another link", test1, null);
-     test1.setNext(test2);
-     test2.setPrev(test1);
-     System.out.println(test1);
-     DLLNode test3 = new DLLNode("continuing the link", test2, null);
-     test2.setNext(test3);
-     test3.setPrev(test2);
-     System.out.println(test1);
-}
+
+    //main method for testing
+    public static void main( String[] args ) 
+{
+	//Below is an exercise in creating a linked list...
+
+	/*********************
+	//Create a node
+	DLLNode<String> first = new DLLNode<String>( "cat", null );
+
+	//Create a new node after the first
+	first.setNext( new DLLNode<String>( "dog", null ) );
+
+	//Create a third node after the second
+	first.getNext().setNext( new DLLNode<String>( "cow", null ) );
+
+	DLLNode temp = first; 
+	while( temp != null ) {
+	    System.out.println( temp );
+	    temp = temp.getNext();
+	}
+	***********************/
+    }//end main
+
 }//end class DLLNode

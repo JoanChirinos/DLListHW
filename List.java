@@ -1,29 +1,36 @@
 /*****************************************************
- * interface List -- subset of actual Java List interface
+ * interface List
  * Specifies actions a List must be able to perform.
- * If placed in current working dir, will be consulted instead of
- * built-in Java library interface.
+ * New in Version 6: Iterability via FOREACH
+ * (The Iterable interface is a superinterface to interface List, 
+ * in the actual Java library. Interface Iterable is what allows
+ * a for-each loop to be run on a collection class.)
  *****************************************************/
 
-public interface List<T>
-{
+import java.util.Iterator;
 
-    //add node containing input String to end of list
-    public boolean add( T x );
+public interface List<T> extends Iterable<T> 
+{ 
+    //add element T to end of list
+    //always return true
+    public boolean add( T x ); 
 
-    //inserts a node containing s at position I
-    public void add( int i, T s );
+    //insert element T at index i
+    public void add( int i, T newVal );
 
-    //removes the node at position i and returns its cargo
+    //remove element at index i
     public T remove( int i );
 
-    //return data in element at position i
-    public T get( int i );
+    //return element at index i
+    public T get( int i ); 
 
-    //overwrite data in element at position i
+    //overwrite element at index i, return old element at index i
     public T set( int i, T x ); 
 
-    //return length of list
-    public int size();
+    //return number of meaningful elements in list
+    public int size(); 
 
-}//end interface
+    //return an Iterator over the elements in list
+    Iterator<T> iterator();
+
+}//end interface List
