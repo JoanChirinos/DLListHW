@@ -1,9 +1,9 @@
 /*
-Team SushiWithCheeriosAndASideOfAaron
-Joan Chirinos, Aaron Li, and Shruthi Venkata
+Team SushiWithCheerios
+Joan Chirinos and Shruthi Venkata
 APCS2 pd08
-HW24 -- On the DLL
-2018-03-26
+HW7 -- Make Itr Work
+2018-03-27
 */
 
 /*****************************************************
