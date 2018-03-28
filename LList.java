@@ -328,6 +328,25 @@ public class LList<T> implements List<T> //your List interface must be in same d
 
     System.out.println("\n...after setting " + james.set(3, "man") + " to man");
     System.out.println(james);
+
+    //--------------v  Testing Iterator thing  v--------------
+
+    System.out.println("\n\tTesting Iterator");
+    Iterator<String> it = james.iterator();
+    while (it.hasNext()) {
+      System.out.println("\t\t" + it.next());
+    }
+    System.out.println("\n\tRemoving beans :(");
+    it = james.iterator();
+    while (it.hasNext()) {
+      if (it.next().equals("beans")) {
+        it.remove();
+      }
+    }
+    it = james.iterator();
+    while (it.hasNext()) {
+      System.out.println("\t\t" + it.next());
+    }
   }
 
 }//end class LList
