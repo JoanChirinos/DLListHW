@@ -29,9 +29,7 @@ public class LList<T> implements List<T> //your List interface must be in same d
     _tail = null; //at birth, a list has no elements
     _size = 0;
   }
-
-  //--------------v  Iterator thing  v--------------
-
+  
   public Iterator<T> iterator() {
     //Iterator<T> it = new MyIterator<T>();
     //return it;
@@ -39,12 +37,22 @@ public class LList<T> implements List<T> //your List interface must be in same d
     return (Iterator<T>) (new MyIterator<T>());
   }
 
+  //--------------v  Iterator thing  v--------------
+
+  /*****************************************************
+  * inner class MyIterator
+  * Adheres to specifications given by Iterator interface.
+  * Uses dummy node to facilitate iterability over LList.
+  *****************************************************/
+
   class MyIterator<T> implements Iterator {
 
     DLLNode<T> _current;
+    boolean _okToRemove;
 
     public MyIterator() {
       _current = new DLLNode(null, null, _head);
+      _okToRemove= false;
     }
 
     @Override
@@ -58,16 +66,20 @@ public class LList<T> implements List<T> //your List interface must be in same d
         throw new NoSuchElementException();
       }
       _current = _current.getNext();
+      _okToRemove = true;
       return _current.getCargo();
     }
 
     @Override
     public void remove() {
-      if (_current.getCargo() == null) {
+      if ( ! _okToRemove ) {
         throw new IllegalStateException();
       }
       _current.getPrev().setNext(_current.getNext());
+      _current.getNext().setPrev(_current.getPrev());
       _current = new DLLNode(null, null, _current.getNext());
+      _okToRemove = false;
+      super._size--;
     }
 
   }
