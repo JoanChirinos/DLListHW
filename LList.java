@@ -2,7 +2,7 @@
 Team SushiWithCheerios
 Joan Chirinos and Shruthi Venkata
 APCS2 pd08
-HW7 -- Make Itr Work
+HW27 -- Make Itr Work
 2018-03-27
 */
 
